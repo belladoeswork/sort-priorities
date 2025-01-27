@@ -211,7 +211,7 @@ export class PolarisMoodDetail extends LitElement {
       <div class="container">
         <div class="header">
           <button class="back-button" @click=${this.handleBackClick}>
-            ← Back
+            Back
           </button>
           <div class="search-container">
             <input
