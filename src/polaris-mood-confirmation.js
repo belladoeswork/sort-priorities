@@ -15,7 +15,7 @@ export class PolarisMoodConfirmation extends LitElement {
   constructor() {
     super();
     this.mood = '';
-    this.backgroundColor = '#FFFFFF';
+    this.backgroundColor = sessionStorage.getItem('selectedMoodColor') || '#FFFFFF';
   }
 
   static get styles() {
@@ -33,6 +33,7 @@ export class PolarisMoodConfirmation extends LitElement {
         text-align: center;
         padding: 20px;
         transition: background-color 0.3s ease;
+        position: relative;
       }
 
       .message {
@@ -49,16 +50,19 @@ export class PolarisMoodConfirmation extends LitElement {
         margin: 20px 0;
       }
 
-      .back-button {
-        padding: 12px 24px;
-        border-radius: 20px;
-        border: none;
-        background: #D6D0FD;
-        color: #2F3336;
+      .arrow-container {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
         cursor: pointer;
-        font-size: 16px;
-        font-family: inherit;
-        margin-top: 40px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .arrow-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     `;
   }
@@ -73,14 +77,14 @@ export class PolarisMoodConfirmation extends LitElement {
     return html`
       <div class="container" style="background-color: ${this.backgroundColor}">
         <div class="message">
-          Congratulations on taking the first step to better mental health
+          Great job in specifying your emotion.
         </div>
         <div class="selected-mood">
-          You're feeling: ${this.mood}
+          ${this.mood}
         </div>
-        <button class="back-button" @click=${this.handleBackClick}>
-          Return to Start
-        </button>
+        <div class="arrow-container" @click=${this.handleBackClick}>
+          <img src="polaris-chip/assets/arrow-right.png" alt="Return to start">
+        </div>
       </div>
     `;
   }

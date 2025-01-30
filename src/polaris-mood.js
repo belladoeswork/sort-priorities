@@ -36,6 +36,32 @@ export class PolarisMood extends LitElement {
         { text: "Furious", color: "#FEDDDE", intensity: 40 },
         { text: "Outraged", color: "#FEDDDE", intensity: 35 },
         { text: "Hostile", color: "#FEDDDE", intensity: 30 },
+        { text: "Terrified", color: "#FEDDDE", intensity: 30 },
+        { text: "Panicked", color: "#FEDDDE", intensity: 30 },
+        { text: "Shocked", color: "#FEDDDE", intensity: 30 },
+        { text: "Impassioned", color: "#FEDDDE", intensity: 30 },
+        { text: "Hyper", color: "#FEDDDE", intensity: 30 },
+        { text: "Livid", color: "#FEDDDE", intensity: 30 },
+        { text: "Irate", color: "#FEDDDE", intensity: 30 },
+        { text: "Overwhelmed", color: "#FEDDDE", intensity: 30 },
+        { text: "Pressured", color: "#FEDDDE", intensity: 30 },
+        { text: "Restless", color: "#FEDDDE", intensity: 30 },
+        { text: "Frightened", color: "#FEDDDE", intensity: 30 },
+        { text: "Apprehensive", color: "#FEDDDE", intensity: 30 },
+        { text: "Fomo", color: "#FEDDDE", intensity: 30 },
+        { text: "Confused", color: "#FEDDDE", intensity: 30 },
+        { text: "Jealous", color: "#FEDDDE", intensity: 30 },
+        { text: "Scared", color: "#FEDDDE", intensity: 30 },
+        { text: "Jittery", color: "#FEDDDE", intensity: 30 },
+        { text: "Concerned", color: "#FEDDDE", intensity: 30 },
+        { text: "Envious", color: "#FEDDDE", intensity: 30 },
+        { text: "Repulsed", color: "#FEDDDE", intensity: 30 },
+        { text: "Embarrassed", color: "#FEDDDE", intensity: 30 },
+        { text: "Peeved", color: "#FEDDDE", intensity: 30 },
+        { text: "Uneasy", color: "#FEDDDE", intensity: 30 },
+        { text: "Contempt", color: "#FEDDDE", intensity: 30 },
+        // { text: "Troubled", color: "#FEDDDE", intensity: 30 },
+        // { text: "Worried", color: "#FEDDDE", intensity: 30 },
       ],
       "high-pleasant": [
         { text: "Excited", color: "#FFEFC7", intensity: 100 },
@@ -53,6 +79,30 @@ export class PolarisMood extends LitElement {
         { text: "Jubilant", color: "#FFEFC7", intensity: 40 },
         { text: "Ecstatic", color: "#FFEFC7", intensity: 35 },
         { text: "Radiant", color: "#FFEFC7", intensity: 30 },
+          { text: "Surprised", color: "#FFEFC7", intensity: 30 },
+          { text: "Awe", color: "#FFEFC7", intensity: 30 },
+          { text: "Exhilarated", color: "#FFEFC7", intensity: 30 },
+          { text: "Determined", color: "#FFEFC7", intensity: 30 },
+          { text: "Successful", color: "#FFEFC7", intensity: 30 },
+          { text: "Amazed", color: "#FFEFC7", intensity: 30 },
+          { text: "Empowered", color: "#FFEFC7", intensity: 30 },
+          { text: "Energized", color: "#FFEFC7", intensity: 30},
+          { text: "Eager", color: "#FFEFC7", intensity: 30},
+          { text: "Productive", color: "#FFEFC7", intensity: 30},
+          { text: "Proud", color: "#FFEFC7", intensity: 30},
+          { text: "Curious", color: "#FFEFC7", intensity: 30 },
+          { text: "Optimistic", color: "#FFEFC7", intensity: 30},
+          { text: "Pleasant", color: "#FFEFC7", intensity: 30},
+          { text: "Focused", color: "#FFEFC7", intensity: 30},
+          { text: "Alive", color: "#FFEFC7", intensity: 30},
+          { text: "Confident", color: "#FFEFC7", intensity: 30},
+          { text: "Engaged", color: "#FFEFC7", intensity: 30},
+          { text: "Challenged", color: "#FFEFC7", intensity: 30},
+          { text: "Accomplished", color: "#FFEFC7", intensity: 30},
+          { text: "Pleased", color: "#FFEFC7", intensity: 30},
+          { text: "Playful", color: "#FFEFC7", intensity: 30},
+          { text: "Wishful", color: "#FFEFC7", intensity: 30},
+          { text: "Hopeful", color: "#FFEFC7", intensity: 30},
       ],
       "low-unpleasant": [
     { text: "Sad", color: "#D8E5FF", intensity: 100 },
@@ -70,6 +120,33 @@ export class PolarisMood extends LitElement {
     { text: "Hopeless", color: "#D8E5FF", intensity: 40 },
     { text: "Despondent", color: "#D8E5FF", intensity: 35 },
     { text: "Miserable", color: "#D8E5FF", intensity: 30 },
+      { text: "Trapped", color: "#D8E5FF", intensity: 30 },
+      { text: "Disgusted", color: "#D8E5FF", intensity: 30 },
+      { text: "Ashamed", color: "#D8E5FF", intensity: 30 },
+      { text: "Insecure", color: "#D8E5FF", intensity: 30 },
+      { text: "Disheartened", color: "#D8E5FF", intensity: 30 },
+      { text: "Humiliated", color: "#D8E5FF", intensity: 30 },
+      { text: "Vulnerable", color: "#D8E5FF", intensity: 30 },
+      { text: "Disappointed", color: "#D8E5FF", intensity: 30 },
+      { text: "Meh", color: "#D8E5FF", intensity: 30 },
+      { text: "Pessimistic", color: "#D8E5FF", intensity: 30 },
+      { text: "Numb", color: "#D8E5FF", intensity: 30 },
+      { text: "Forlorn", color: "#D8E5FF", intensity: 30 },
+      { text: "Fatigued", color: "#D8E5FF", intensity: 30 },
+      { text: "Guilty", color: "#D8E5FF", intensity: 30 },
+      { text: "Depressed", color: "#D8E5FF", intensity: 30 },
+      { text: "Spent", color: "#D8E5FF", intensity: 30 },
+      { text: "Discouraged", color: "#D8E5FF", intensity: 30 },
+      { text: "Disengaged", color: "#D8E5FF", intensity: 30 },
+      { text: "Despair", color: "#D8E5FF", intensity: 30},
+      { text: "Alienated", color: "#D8E5FF", intensity: 30},
+      { text: "Nostalgic", color: "#D8E5FF", intensity: 30},
+      { text: "Apathetic", color: "#D8E5FF", intensity: 30},
+      { text: "Excluded", color: "#D8E5FF", intensity: 30},
+      { text: "Disconnected", color: "#D8E5FF", intensity: 30},
+      // { text: "Glum", color: "#D8E5FF", intensity: 30},
+      // { text: "Burned Out", color: "#D8E5FF", intensity: 30},
+      // { text: "Helpless", color: "#D8E5FF", intensity: 30},
   ],
   "low-pleasant": [
     { text: "Calm", color: "#CFEFE7", intensity: 100 },
@@ -87,6 +164,31 @@ export class PolarisMood extends LitElement {
     { text: "Restful", color: "#CFEFE7", intensity: 40 },
     { text: "Harmonious", color: "#CFEFE7", intensity: 35 },
     { text: "Balanced", color: "#CFEFE7", intensity: 30 },
+      { text: "Thoughtful", color: "#CFEFE7", intensity: 30 },
+      { text: "Appreciated", color: "#CFEFE7", intensity: 30 },
+      { text: "Understood", color: "#CFEFE7", intensity: 30},
+      { text: "Respected", color: "#CFEFE7", intensity: 30},
+      { text: "Fulfilled", color: "#CFEFE7", intensity: 30 },
+      { text: "Blissful", color: "#CFEFE7", intensity: 30 },
+      { text: "Chill", color: "#CFEFE7", intensity: 30},
+      { text: "Comfortable", color: "#CFEFE7", intensity: 30},
+    //  { text: "Compassionate", color: "#CFEFE7", intensity: 30},
+      { text: "Supported", color: "#CFEFE7", intensity:30},
+      { text: "Loved", color: "#CFEFE7", intensity:30},
+      { text: "Connected", color: "#CFEFE7", intensity: 30},
+      { text: "Sympathetic", color: "#CFEFE7", intensity: 30},
+      { text: "Empathetic", color: "#CFEFE7", intensity: 30},
+      { text: "Valued", color: "#CFEFE7", intensity: 30},
+      { text: "Grateful", color: "#CFEFE7", intensity: 30},
+      { text: "Thankful", color: "#CFEFE7", intensity: 30},
+      { text: "Accepted", color: "#CFEFE7", intensity: 30},
+      { text: "Moved", color: "#CFEFE7", intensity: 30},
+      { text: "Carefree", color: "#CFEFE7", intensity: 30},
+      { text: "Safe", color: "#CFEFE7", intensity: 30},
+      { text: "Secure", color: "#CFEFE7", intensity: 30},
+      { text: "Blessed", color: "#CFEFE7", intensity: 30},
+      { text: "Relieved", color: "#CFEFE7", intensity: 30},
+      { text: "Satisfied", color: "#CFEFE7", intensity: 30},
     ],
     };
   }
@@ -129,7 +231,7 @@ export class PolarisMood extends LitElement {
         align-items: center;
         text-align: center;
         font-size: 18px;
-        font-weight: 500;
+        font-weight: 600;
         color: #2F3336;
         cursor: pointer;
         transition: transform 0.2s;
@@ -206,28 +308,28 @@ export class PolarisMood extends LitElement {
         <div class="mood-grid">
           <div
             class="mood-button"
-            style="background-color: #FEDDDE;"
+            style="background-color: #FEDDDE; font-weight: 600;"
             @click=${() => this.handleMoodSelect('high-unpleasant')}
           >
             High Energy, Unpleasant
           </div>
           <div
             class="mood-button"
-            style="background-color: #FFEFC7;"
+            style="background-color: #FFEFC7;font-weight: 600;"
             @click=${() => this.handleMoodSelect('high-pleasant')}
           >
             High Energy, Pleasant
           </div>
           <div
             class="mood-button"
-            style="background-color: #D8E5FF;"
+            style="background-color: #D8E5FF; font-weight: 600;"
             @click=${() => this.handleMoodSelect('low-unpleasant')}
           >
             Low Energy, Unpleasant
           </div>
           <div
             class="mood-button"
-            style="background-color: #CFEFE7;"
+            style="background-color: #CFEFE7; font-weight: 600;"
             @click=${() => this.handleMoodSelect('low-pleasant')}
           >
             Low Energy, Pleasant

@@ -1,0 +1,62 @@
+//red
+Enraged Terrified Panicked
+Shocked Impassioned Annoyed Hyper
+Livid Irate Overwhelmed
+Stressed Irritated Pressured Restless
+Furious Frightened Anxious
+Apprehensive Fomo Confused
+Jealous Scared Angry
+Jittery Concerned Tense
+Envious Repulsed Frustrated
+Embarrassed Peeved Uneasy
+Contempt Troubled Worried
+Nervous	
+
+//yellow
+Surprised Awe Exhilarated
+Thrilled Elated Thrilled Ecstatic
+Excited Determined Successful
+Amazed Inspired Empowered
+Energized Eager Enthusiastic
+Joyful Productive Proud
+Cheerful Curious Upbeat
+Happy Motivated Optimistic
+Pleasant Focused Alive
+Confident Engaged Challenged Accomplished
+Pleased Playful Delighted
+Wishful Hopeful
+
+//purple
+
+Trapped Disgusted Ashamed Insecure
+Disheartened Down Bored
+Humiliated Vulnerable
+Disappointed Meh Sad
+Pessimistic Numb
+Forlorn Tired Fatigued
+Guilty Depressed Hopeless
+Spent Discouraged Disengaged
+Miserable Despair Alienated
+Nostalgic Lonely Apathetic
+Excluded Disconnected
+Glum Burned Out Exhausted Helpless
+
+// green
+Calm At Ease Thoughtful Appreciated
+Understood Respected Fulfilled Blissful
+Relaxed Chill Comfortable Compassionate
+Appreciated Supported Loved Connected
+Sympathetic Empathetic
+Valued Grateful
+Mellow Peaceful Balanced Thankful
+Content Accepted Moved
+Carefree Tranquil
+Safe Secure Blessed
+Relieved Satisfied Serene
+
+
+
+green total :40 
+yellow total : 30
+red total : 30
+purple total : 30

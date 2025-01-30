@@ -11,12 +11,26 @@ export class MoodRouter {
   
   static handleRoute(path) {
     const mainContainer = document.querySelector('#mood-container');
+    const confirmationMatch = path.match(/\/mood\/confirmation\/(.+)/);
     const moodMatch = path.match(/\/mood\/(.+)/);
     
-    if (moodMatch) {
+    if (confirmationMatch) {
+      const mood = decodeURIComponent(confirmationMatch[1]);
+      const confirmationView = document.createElement('polaris-mood-confirmation');
+      confirmationView.mood = mood;
+      mainContainer.innerHTML = '';
+      mainContainer.appendChild(confirmationView);
+    } else if (moodMatch) {
       const mood = moodMatch[1];
       const detailView = document.createElement('polaris-mood-detail');
       detailView.mood = mood;
+      
+      // Restore moodOptions from sessionStorage
+      const storedMoodOptions = sessionStorage.getItem('moodOptions');
+      if (storedMoodOptions) {
+        detailView.moodOptions = JSON.parse(storedMoodOptions);
+      }
+      
       mainContainer.innerHTML = '';
       mainContainer.appendChild(detailView);
     } else {
