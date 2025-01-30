@@ -66,6 +66,26 @@ export class PolarisMoodConfirmation extends LitElement {
         height: 100%;
         object-fit: contain;
       }
+
+      .click-text {
+        position: absolute;
+        bottom: 90px;
+        right: 80px;
+        font-size: 16px;
+        color: #2F3336;
+        transform: rotate(-15deg);
+        font-family: 'Comic Sans MS', cursive;
+        animation: float 2s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: rotate(-15deg) translateY(0px);
+        }
+        50% {
+          transform: rotate(-15deg) translateY(-5px);
+        }
+      }
     `;
   }
 
@@ -85,6 +105,7 @@ export class PolarisMoodConfirmation extends LitElement {
           ${this.mood}
         </div>
         <div class="arrow-container" @click=${this.handleBackClick}>
+          <div class="click-text">Click here!</div>
           <img src="${arrowIcon}" alt="Return to start">
         </div>
       </div>
