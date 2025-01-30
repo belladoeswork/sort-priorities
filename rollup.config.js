@@ -5,6 +5,7 @@ import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 import { terser } from 'rollup-plugin-terser';
 import { generateSW } from 'rollup-plugin-workbox';
 import path from 'path';
+import copy from 'rollup-plugin-copy';
 
 export default {
   input: 'index.html',
@@ -29,7 +30,9 @@ export default {
     /** Minify JS */
     terser(),
     /** Bundle assets references via import.meta.url */
-    importMetaAssets(),
+    importMetaAssets({
+      include: ['**/*.png', '**/*.svg', '**/*.jpg', '**/*.gif']
+    }),
     /** Compile JS to a lower language target */
     babel({
       babelHelpers: 'bundled',
@@ -77,6 +80,15 @@ export default {
       globPatterns: ['**/*.{html,js,css,webmanifest}'],
       skipWaiting: true,
       clientsClaim: true,
+    }),
+    copy({
+      targets: [
+        { 
+          src: 'assets/*', 
+          dest: 'dist/assets',
+          flatten: false
+        }
+      ]
     }),
   ],
 };

@@ -1,5 +1,7 @@
 import { LitElement, html, css } from 'lit';
 
+const arrowIcon = new URL('../../assets/arrow-right.png', import.meta.url).href;
+
 export class PolarisMoodConfirmation extends LitElement {
   static get tag() {
     return 'polaris-mood-confirmation';
@@ -83,7 +85,7 @@ export class PolarisMoodConfirmation extends LitElement {
           ${this.mood}
         </div>
         <div class="arrow-container" @click=${this.handleBackClick}>
-          <img src="/assets/arrow-right.png" alt="Return to start">
+          <img src="${arrowIcon}" alt="Return to start">
         </div>
       </div>
     `;
