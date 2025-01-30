@@ -83,7 +83,7 @@ export class PolarisMoodConfirmation extends LitElement {
           ${this.mood}
         </div>
         <div class="arrow-container" @click=${this.handleBackClick}>
-          <img src="polaris-chip/assets/arrow-right.png" alt="Return to start">
+          <img src="/assets/arrow-right.png" alt="Return to start">
         </div>
       </div>
     `;
