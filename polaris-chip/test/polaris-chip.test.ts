@@ -1,13 +1,13 @@
 import { html } from 'lit';
 import { fixture, expect } from '@open-wc/testing';
 
-import type { PolarisChip } from '../src/polaris-chip.js';
-import '../src/polaris-chip.js';
+import type { PolarisChip } from '../src/cognitive-selector.js';
+import '../src/cognitive-selector.js';
 
 describe('PolarisChip', () => {
   let element: PolarisChip;
   beforeEach(async () => {
-    element = await fixture(html`<polaris-chip></polaris-chip>`);
+    element = await fixture(html`<cognitive-selector></cognitive-selector>`);
   });
 
   it('renders a h1', () => {

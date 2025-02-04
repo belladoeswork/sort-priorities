@@ -1,6 +1,6 @@
 import { html } from 'lit';
-import '../src/polaris-mood.js';
-import '../src/polaris-mood-detail.js';
+import '../src/cognitive-selector.js';
+import '../src/cognitive-selector-detail.js';
 
 export default {
   title: 'PolarisMood',

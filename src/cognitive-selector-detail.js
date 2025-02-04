@@ -1,8 +1,9 @@
 import { LitElement, html, css } from 'lit';
+import { MoodRouter } from './mood-router.js';
 
-export class PolarisMoodDetail extends LitElement {
+export class CognitiveSelectorDetail extends LitElement {
   static get tag() {
-    return 'polaris-mood-detail';
+    return 'cognitive-selector-detail';
   }
 
   static get properties() {
@@ -140,8 +141,8 @@ export class PolarisMoodDetail extends LitElement {
 
       .mood-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(7, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         gap: 4px;
         padding: 4px;
         transition: all 0.3s ease-in-out;
@@ -223,8 +224,8 @@ export class PolarisMoodDetail extends LitElement {
     // Replace current view with confirmation view
     this.parentNode.replaceChild(confirmationView, this);
     
-    // Update URL
-    window.history.pushState({}, '', `/mood/confirmation/${encodeURIComponent(selectedMood)}`);
+    // Update URL (changed from /mood/confirmation/${selectedMood})
+    window.history.pushState({}, '', `/${this.mood}/confirmation/${encodeURIComponent(selectedMood)}`);
 
     // Dispatch event for any parent components that need to know
     this.dispatchEvent(new CustomEvent('mood-selected', {
@@ -235,14 +236,11 @@ export class PolarisMoodDetail extends LitElement {
   }
 
   handleBackClick() {
-    // Create main mood view
-    const mainView = document.createElement('polaris-mood');
+    // Update URL to home
+    window.history.pushState({}, '', '/');
     
-    // Replace detail view with main view
-    this.parentNode.replaceChild(mainView, this);
-    
-    // Update URL
-    window.history.pushState({}, '', '/mood');
+    // Use router to handle the navigation
+    MoodRouter.handleRoute('/');
   }
 
   handleSearch() {
@@ -265,7 +263,7 @@ export class PolarisMoodDetail extends LitElement {
     return html`
       <div class="container">
         <div class="header">
-          <h2>Choose the emotion that best describes how you feel right now</h2>
+          <h2>How do you feel after such a thought?</h2>
           <div class="header-controls">
             <button class="back-button" @click=${this.handleBackClick}>
               Back
@@ -309,4 +307,4 @@ export class PolarisMoodDetail extends LitElement {
   }
 }
 
-customElements.define(PolarisMoodDetail.tag, PolarisMoodDetail); 
+customElements.define(CognitiveSelectorDetail.tag, CognitiveSelectorDetail); 

@@ -1,7 +1,9 @@
 export class MoodRouter {
   static init() {
     // Handle browser back/forward buttons
-    window.addEventListener('popstate', () => {
+    window.addEventListener('popstate', (e) => {
+      // Prevent default behavior
+      e.preventDefault();
       MoodRouter.handleRoute(window.location.pathname);
     });
     
@@ -10,19 +12,32 @@ export class MoodRouter {
   }
   
   static handleRoute(path) {
-    const mainContainer = document.querySelector('#mood-container');
-    const confirmationMatch = path.match(/\/mood\/confirmation\/(.+)/);
-    const moodMatch = path.match(/\/mood\/(.+)/);
+    const mainContainer = document.querySelector('#cognitive-container');
+    // Updated regex patterns to match new URL structure
+    const confirmationMatch = path.match(/\/(.+)\/confirmation\/(.+)/);
+    const detailMatch = path.match(/^\/([^/]+)$/);
+    const needsComparisonMatch = path.match(/\/(.+)\/needs-comparison/);
     
-    if (confirmationMatch) {
-      const mood = decodeURIComponent(confirmationMatch[1]);
-      const confirmationView = document.createElement('polaris-mood-confirmation');
-      confirmationView.mood = mood;
+    if (needsComparisonMatch) {
+      const [, mood] = needsComparisonMatch;
+      const comparisonView = document.createElement('cognitive-selector-needs-comparison');
+      comparisonView.mood = mood;
+      comparisonView.backgroundColor = sessionStorage.getItem('selectedMoodColor');
+      // We'll need to store selected needs in sessionStorage to restore them
+      const selectedNeeds = JSON.parse(sessionStorage.getItem('selectedNeeds') || '[]');
+      comparisonView.selectedNeeds = selectedNeeds;
+      mainContainer.innerHTML = '';
+      mainContainer.appendChild(comparisonView);
+    } else if (confirmationMatch) {
+      const [, category, mood] = confirmationMatch;
+      const confirmationView = document.createElement('cognitive-need-confirmation');
+      confirmationView.mood = decodeURIComponent(mood);
+      confirmationView.backgroundColor = sessionStorage.getItem('selectedMoodColor');
       mainContainer.innerHTML = '';
       mainContainer.appendChild(confirmationView);
-    } else if (moodMatch) {
-      const mood = moodMatch[1];
-      const detailView = document.createElement('polaris-mood-detail');
+    } else if (detailMatch) {
+      const mood = detailMatch[1];
+      const detailView = document.createElement('cognitive-selector-detail');
       detailView.mood = mood;
       
       // Restore moodOptions from sessionStorage
@@ -34,7 +49,7 @@ export class MoodRouter {
       mainContainer.innerHTML = '';
       mainContainer.appendChild(detailView);
     } else {
-      const mainView = document.createElement('polaris-mood');
+      const mainView = document.createElement('cognitive-selector');
       mainContainer.innerHTML = '';
       mainContainer.appendChild(mainView);
     }

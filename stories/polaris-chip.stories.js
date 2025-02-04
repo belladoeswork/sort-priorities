@@ -1,17 +1,17 @@
 import { html } from 'lit';
-import '../src/polaris-chip.js';
+import '../src/cognitive-selector.js';
 
 export default {
-  title: 'PolarisChip',
-  component: 'polaris-chip',
+  title: 'cognitiveselector',
+  component: 'cognitive-selector',
 };
 
 function Template({ title }) {
   return html`
-    <polaris-chip
+    <cognitive-selector
       .title=${title}
     >
-    </polaris-chip>
+    </cognitive-selector>
   `;
 }
 

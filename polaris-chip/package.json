@@ -1,8 +1,8 @@
 {
-  "name": "polaris-chip",
-  "description": "Webcomponent polaris-chip following open-wc recommendations",
+  "name": "cognitive-selector",
+  "description": "Webcomponent cognitive-selector following open-wc recommendations",
   "license": "MIT",
-  "author": "polaris-chip",
+  "author": "cognitive-selector",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

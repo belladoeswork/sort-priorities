@@ -15,7 +15,7 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
   // esbuildTarget: 'auto'
 
   /** Set appIndex to enable SPA routing */
-  // appIndex: 'demo/index.html',
+  appIndex: 'demo/index.html',
 
   plugins: [
     /** Use Hot Module Replacement by uncommenting. Requires @open-wc/dev-server-hmr plugin */
@@ -23,4 +23,14 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
   ],
 
   // See documentation for all available options
+
+  // Add this middleware to handle all routes
+  middleware: [
+    function rewriteIndex(context, next) {
+      if (!context.url.includes('.') && !context.url.startsWith('/assets/')) {
+        context.url = '/index.html';
+      }
+      return next();
+    },
+  ],
 });

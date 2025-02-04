@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Mood selector web component">
+  <meta name="Description" content="Cognitive selector web component">
   <base href="/">
 
   <style>
@@ -15,21 +15,24 @@
       background-color: #ededed;
     }
   </style>
-  <title>Mood Selector</title>
+  <title>Cognitive Selector</title>
 </head>
 
 <body>
-  <div id="mood-container">
-    <polaris-mood></polaris-mood>
+  <div id="cognitive-container">
+    <cognitive-selector></cognitive-selector>
   </div>
 
+  <script type="module" src="./src/cognitive-selector.js"></script>
+  <script type="module" src="./src/cognitive-selector-detail.js"></script>
+  <script type="module" src="./src/cognitive-selector-confirmation.js"></script>
+  <script type="module" src="./src/cognitive-selector-needs-comparison.js"></script>
   <script type="module">
     import { MoodRouter } from './src/mood-router.js';
-    MoodRouter.init();
+    document.addEventListener('DOMContentLoaded', () => {
+      MoodRouter.init();
+    });
   </script>
-  <script type="module" src="./src/polaris-mood.js"></script>
-  <script type="module" src="./src/polaris-mood-detail.js"></script>
-  <script type="module" src="./src/polaris-mood-confirmation.js"></script>
 </body>
 
 </html>
