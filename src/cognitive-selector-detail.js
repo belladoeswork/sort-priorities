@@ -217,7 +217,7 @@ export class CognitiveSelectorDetail extends LitElement {
     sessionStorage.setItem('moodOptions', JSON.stringify(this.moodOptions));
     
     // Create confirmation view
-    const confirmationView = document.createElement('polaris-mood-confirmation');
+    const confirmationView = document.createElement('cognitive-need-confirmation');
     confirmationView.mood = selectedMood;
     confirmationView.backgroundColor = backgroundColor;
     
