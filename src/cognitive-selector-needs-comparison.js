@@ -43,7 +43,7 @@ export class CognitiveSelectorNeedsComparison extends LitElement {
     // Get two different random needs from the selected needs array
     const shuffledNeeds = [...this.selectedNeeds].sort(() => Math.random() - 0.5);
     
-    // Classify which need represents a cognitive bias (now with quotes)
+    // Classify which need represents a cognitive bias 
     const cognitiveNeeds = ['Recognition', 'Validation', 'Acceptance', 'Worth', 'Attention', 'Fairness', 'Justice', 'Achievement', 'Success', 'Appreciation', 'Status', 'Impact', 'Value'];
     
     // Determine which of our shuffled needs is the cognitive bias
@@ -242,7 +242,7 @@ export class CognitiveSelectorNeedsComparison extends LitElement {
           </div>
         </div>
         <div class="click-text">Click here!</div>
-        <div class="arrow-container" @click=${this.handleBackClick}>
+        <div class="arrow-container" >
           <img class="arrow-image" src="${arrowIcon}" alt="Go back">
         </div>
       </div>

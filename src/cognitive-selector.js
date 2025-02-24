@@ -11,6 +11,8 @@ export class CognitiveSelector extends LitElement {
       searchQuery: { type: String },
       isSearchVisible: { type: Boolean },
       moodOptions: { type: Object },
+      thoughtPairs: { type: Array },
+      currentPair: { type: Object },
     };
   }
 
@@ -191,6 +193,24 @@ export class CognitiveSelector extends LitElement {
       // { text: "Satisfied", color: "#CFEFE7", intensity: 100},
     ],
     };
+    
+    // Add the thought pairs
+    this.thoughtPairs = [
+      { negative: "Everybody hates me", balanced: "Some people like me" },
+      { negative: "I will definitely fail the exam", balanced: "I can prepare and try" },
+      { negative: "My success was just luck", balanced: "I worked hard" },
+      { negative: "I feel like nobody likes me, so it must be true", balanced: "Feelings aren't facts" },
+      { negative: "I am a failure", balanced: "I can improve" },
+      { negative: "I got one bad review, so I am terrible at my job", balanced: "I got positive feedback too" },
+      { negative: "They think I'm stupid", balanced: "I can ask them" },
+      { negative: "They were upset, it must be my fault", balanced: "It might not be about me" },
+      { negative: "I must never make mistakes", balanced: "Mistakes help learning" },
+      { negative: "I failed once, so I will always fail", balanced: "I can try again" },
+      { negative: "She didn't smile at me, she must hate me", balanced: "She might be busy" }
+    ];
+    
+    // Select a random pair when component is constructed
+    this.currentPair = this.thoughtPairs[Math.floor(Math.random() * this.thoughtPairs.length)];
   }
 
   static get styles() {
@@ -229,28 +249,33 @@ export class CognitiveSelector extends LitElement {
         width: 100%;
         max-width: 600px;
         padding: 0 20px;
-        margin-top: 20vh;
+        margin-top: 10vh;
       }
 
       .option-button {
-        height: 120px;
+        min-height: 120px;
+        height: auto;
         border: 1px solid #000;
         border-radius: 8px;
         background: white;
-        font-size: 16px;
+        font-size: 14px;
         cursor: pointer;
         text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 20px;
-        line-height: 1.4;
+        padding: 16px;
+        line-height: 1.3;
+        word-wrap: break-word;
+        white-space: normal;
+        overflow-wrap: break-word;
       }
 
       .option-button.full-width {
         grid-column: 1 / -1;
-        height: 80px;
+        min-height: 60px;
+        height: auto;
       }
 
       .option-button:hover {
@@ -294,25 +319,21 @@ export class CognitiveSelector extends LitElement {
         <div class="options-container">
           <button 
             class="option-button"
-            @click=${() => this.handleMoodSelect('everybody-hates-me')}
+            @click=${() => this.handleMoodSelect('negative-thought')}
           >
-            Everybody
-            <br>
-            hates me
+            ${this.currentPair.negative}
           </button>
 
           <button
             class="option-button"
-
+            @click=${() => this.handleMoodSelect('balanced-thought')}
           >
-            Some people
-            <br>
-            might hate me
+            ${this.currentPair.balanced}
           </button>
 
           <button
             class="option-button full-width"
-
+            @click=${() => this.handleMoodSelect('none')}
           >
             None of the above
           </button>

@@ -27,46 +27,31 @@ export class CognitiveNeedConfirmation extends LitElement {
       // Red emotions (FEDDDE)
       "#FEDDDE": [
         'Safety', 'Respect', 'Consideration', 'Space',
-        //'Understanding', 'Clarity', 
-        //'Fairness', 'Recognition',
-        // 'Autonomy', 'Independence', 'Justice', 'Voice',
-        // 'Boundaries', 'Protection', 'Support', 'Validation',
-        // 'Acknowledgment', 'Attention', 'Peace', 'Harmony',
-        // 'Trust', 'Honesty', 'Communication', 'Resolution'
+        'Understanding', 'Clarity'
       ],
       // Yellow emotions (FFEFC7)
       "#FFEFC7": [
         'Achievement', 'Growth', 'Progress', 'Success',
-       // 'Recognition', 'Appreciation',
-        // 'Validation', 'Support',
-        // 'Connection', 'Belonging', 'Purpose', 'Direction',
-        // 'Challenge', 'Learning', 'Adventure', 'Discovery',
-        // 'Freedom', 'Expression', 'Creativity', 'Innovation',
-        // 'Impact', 'Contribution', 'Value', 'Worth'
+        'Recognition', 'Appreciation'
       ],
       // Blue emotions (D8E5FF)
       "#D8E5FF": [
         'Connection', 'Understanding', 'Empathy', 'Support',
-      //  'Comfort', 'Care', 
-        //'Companionship', 'Belonging',
-        // 'Acceptance', 'Recognition', 'Validation', 'Worth',
-        // 'Hope', 'Purpose', 'Meaning', 'Direction',
-        // 'Rest', 'Peace', 'Safety', 'Security',
-        // 'Trust', 'Stability', 'Consistency', 'Reliability'
+        'Comfort', 'Care'
       ],
       // Green emotions (CFEFE7)
       "#CFEFE7": [
         'Peace', 'Balance', 'Harmony', 'Stability',
-       // 'Connection', 'Understanding', 
-        // 'Acceptance', 'Support',
-        // 'Safety', 'Security', 'Trust', 'Comfort',
-        // 'Space', 'Freedom', 'Autonomy', 'Independence',
-        // 'Growth', 'Progress', 'Purpose', 'Direction',
-        // 'Value', 'Worth', 'Recognition', 'Appreciation'
+        'Connection', 'Understanding'
       ]
     };
     // Set the appropriate needs list based on the background color
-    this.needsList = this.needsLists[this.backgroundColor] || this.needsLists["#CFEFE7"];
+    this.needsList = [
+      ...this.needsLists["#FEDDDE"],
+      ...this.needsLists["#FFEFC7"],
+      ...this.needsLists["#D8E5FF"],
+      ...this.needsLists["#CFEFE7"]
+    ];
   }
 
   static get styles() {
@@ -92,10 +77,10 @@ export class CognitiveNeedConfirmation extends LitElement {
 
       .grid-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 10px;
         padding: 20px;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto;
       }
 
@@ -111,6 +96,7 @@ export class CognitiveNeedConfirmation extends LitElement {
         cursor: pointer;
         transition: all 0.3s ease;
         text-align: center;
+        background-color: white;
       }
 
       .grid-button.selected {
@@ -197,9 +183,6 @@ export class CognitiveNeedConfirmation extends LitElement {
   }
 
   render() {
-    // Update needsList when backgroundColor changes
-    this.needsList = this.needsLists[this.backgroundColor] || this.needsLists["#CFEFE7"];
-    
     return html`
       <div class="container">
         <div class="header">
@@ -209,14 +192,12 @@ export class CognitiveNeedConfirmation extends LitElement {
           ${this.needsList.map((need, index) => html`
             <button 
               class="grid-button ${this.selectedButtons.includes(index) ? 'selected' : ''}"
-              style="background-color: ${this.backgroundColor}"
               @click=${() => this.handleButtonClick(index)}
             >
               ${need}
             </button>
           `)}
         </div>
-
       </div>
     `;
   }
