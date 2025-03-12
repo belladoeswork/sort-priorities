@@ -9,7 +9,11 @@ export class PrioritySort extends LitElement {
     return {
       priorities: { type: Array },
       draggedItem: { type: Object },
-      customPriority: { type: String }
+      customPriority: { type: String },
+      isDragging: { type: Boolean },
+      dragStartY: { type: Number },
+      dragStartIndex: { type: Number },
+      currentY: { type: Number }
     };
   }
 
@@ -29,6 +33,10 @@ export class PrioritySort extends LitElement {
     this.shufflePriorities();
     this.draggedItem = null;
     this.customPriority = '';
+    this.isDragging = false;
+    this.dragStartY = 0;
+    this.dragStartIndex = -1;
+    this.currentY = 0;
   }
 
   shufflePriorities() {
@@ -75,11 +83,16 @@ export class PrioritySort extends LitElement {
         cursor: move;
         user-select: none;
         transition: background-color 0.2s, transform 0.2s;
+        touch-action: none;
+        position: relative;
       }
 
       .priority-item.dragging {
-        background: #f5f5f5;
+        z-index: 1000;
+        cursor: grabbing;
+        opacity: 0.9;
         transform: scale(1.02);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       }
 
       .priority-number {
@@ -115,37 +128,74 @@ export class PrioritySort extends LitElement {
   }
 
   handleDragStart(e, index) {
-    this.draggedItem = this.priorities[index];
-    e.currentTarget.classList.add('dragging');
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', index);
+    e.preventDefault();
+    
+    const touch = e.touches ? e.touches[0] : e;
+    this.isDragging = true;
+    this.dragStartY = touch.clientY;
+    this.currentY = touch.clientY;
+    this.dragStartIndex = index;
+    
+    const element = e.currentTarget;
+    element.classList.add('dragging');
+    
+    const rect = element.getBoundingClientRect();
+    element.style.transform = `translateY(0)`;
   }
 
-  handleDragOver(e) {
+  handleDragMove(e) {
+    if (!this.isDragging) return;
     e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  }
-
-  handleDrop(e, dropIndex) {
-    e.preventDefault();
-    const dragIndex = parseInt(e.dataTransfer.getData('text/plain'));
     
-    if (dragIndex === dropIndex) return;
-
-    // Remove dragged item from array
-    const newPriorities = [...this.priorities];
-    const [removed] = newPriorities.splice(dragIndex, 1);
+    const touch = e.touches ? e.touches[0] : e;
+    this.currentY = touch.clientY;
     
-    // Insert at new position
-    newPriorities.splice(dropIndex, 0, removed);
+    const deltaY = this.currentY - this.dragStartY;
+    const element = this.shadowRoot.querySelector('.dragging');
+    if (element) {
+      element.style.transform = `translateY(${deltaY}px)`;
+    }
     
-    this.priorities = newPriorities;
-    this.requestUpdate();
+    const items = [...this.shadowRoot.querySelectorAll('.priority-item')];
+    const draggingRect = element.getBoundingClientRect();
+    const middleY = draggingRect.top + draggingRect.height / 2;
+    
+    const newIndex = items.reduce((closest, child, index) => {
+      if (child.classList.contains('dragging')) return closest;
+      
+      const rect = child.getBoundingClientRect();
+      const offset = middleY - (rect.top + rect.height / 2);
+      
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, index };
+      }
+      return closest;
+    }, { offset: Number.NEGATIVE_INFINITY }).index;
+    
+    if (newIndex !== undefined && newIndex !== this.dragStartIndex) {
+      this.reorderItems(this.dragStartIndex, newIndex);
+      this.dragStartIndex = newIndex;
+      this.dragStartY = this.currentY;
+    }
   }
 
   handleDragEnd(e) {
-    e.currentTarget.classList.remove('dragging');
-    this.draggedItem = null;
+    if (!this.isDragging) return;
+    e.preventDefault();
+    
+    this.isDragging = false;
+    const element = this.shadowRoot.querySelector('.dragging');
+    if (element) {
+      element.style.transform = '';
+      element.classList.remove('dragging');
+    }
+  }
+
+  reorderItems(fromIndex, toIndex) {
+    const newPriorities = [...this.priorities];
+    const [removed] = newPriorities.splice(fromIndex, 1);
+    newPriorities.splice(toIndex, 0, removed);
+    this.priorities = newPriorities;
   }
 
   addCustomPriority(e) {
@@ -169,11 +219,13 @@ export class PrioritySort extends LitElement {
         <ul class="priority-list">
           ${this.priorities.map((priority, index) => html`
             <li class="priority-item"
-                draggable="true"
-                @dragstart="${(e) => this.handleDragStart(e, index)}"
-                @dragover="${this.handleDragOver}"
-                @drop="${(e) => this.handleDrop(e, index)}"
-                @dragend="${this.handleDragEnd}"
+                @mousedown="${(e) => this.handleDragStart(e, index)}"
+                @touchstart="${(e) => this.handleDragStart(e, index)}"
+                @mousemove="${this.handleDragMove}"
+                @touchmove="${this.handleDragMove}"
+                @mouseup="${this.handleDragEnd}"
+                @touchend="${this.handleDragEnd}"
+                @mouseleave="${this.handleDragEnd}"
             >
               <span class="priority-number">${index + 1}</span>
               ${priority.text}
