@@ -72,22 +72,14 @@ export class PrioritySort extends LitElement {
         background: white;
         border: 1px solid #2F3336;
         border-radius: 8px;
-        cursor: move; /* fallback if grab cursor is unsupported */
-        cursor: grab;
+        cursor: move;
         user-select: none;
-        -webkit-user-select: none; /* Safari */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* IE10+/Edge */
-        touch-action: none; /* Prevents default touch actions */
         transition: background-color 0.2s, transform 0.2s;
       }
 
       .priority-item.dragging {
         background: #f5f5f5;
         transform: scale(1.02);
-        cursor: grabbing;
-        opacity: 0.8;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16);
       }
 
       .priority-number {
@@ -125,11 +117,13 @@ export class PrioritySort extends LitElement {
   handleDragStart(e, index) {
     this.draggedItem = this.priorities[index];
     e.currentTarget.classList.add('dragging');
-    e.dataTransfer.setData('text/plain', index.toString());
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', index);
   }
 
   handleDragOver(e) {
     e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
   }
 
   handleDrop(e, dropIndex) {
@@ -152,12 +146,6 @@ export class PrioritySort extends LitElement {
   handleDragEnd(e) {
     e.currentTarget.classList.remove('dragging');
     this.draggedItem = null;
-  }
-
-  handleTouchStart(e, index) {
-    e.preventDefault(); // Prevent text selection
-    this.draggedItem = this.priorities[index];
-    e.currentTarget.classList.add('dragging');
   }
 
   addCustomPriority(e) {
@@ -186,9 +174,6 @@ export class PrioritySort extends LitElement {
                 @dragover="${this.handleDragOver}"
                 @drop="${(e) => this.handleDrop(e, index)}"
                 @dragend="${this.handleDragEnd}"
-                @touchstart="${(e) => this.handleTouchStart(e, index)}"
-                @touchmove="${this.handleDragOver}"
-                @touchend="${this.handleDragEnd}"
             >
               <span class="priority-number">${index + 1}</span>
               ${priority.text}
