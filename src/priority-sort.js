@@ -152,30 +152,35 @@ export class PrioritySort extends LitElement {
     
     const deltaY = this.currentY - this.dragStartY;
     const element = this.shadowRoot.querySelector('.dragging');
-    if (element) {
-      element.style.transform = `translateY(${deltaY}px)`;
-    }
+    if (!element) return;
+    
+    element.style.transform = `translateY(${deltaY}px)`;
     
     const items = [...this.shadowRoot.querySelectorAll('.priority-item')];
     const draggingRect = element.getBoundingClientRect();
     const middleY = draggingRect.top + draggingRect.height / 2;
     
-    const newIndex = items.reduce((closest, child, index) => {
-      if (child.classList.contains('dragging')) return closest;
-      
-      const rect = child.getBoundingClientRect();
-      const offset = middleY - (rect.top + rect.height / 2);
-      
-      if (offset < 0 && offset > closest.offset) {
-        return { offset, index };
-      }
-      return closest;
-    }, { offset: Number.NEGATIVE_INFINITY }).index;
+    // Find the closest item by comparing with all items at once
+    let newIndex = this.dragStartIndex;
+    let minDistance = Infinity;
     
-    if (newIndex !== undefined && newIndex !== this.dragStartIndex) {
+    items.forEach((item, index) => {
+      if (item.classList.contains('dragging')) return;
+      
+      const rect = item.getBoundingClientRect();
+      const itemMiddleY = rect.top + rect.height / 2;
+      const distance = Math.abs(middleY - itemMiddleY);
+      
+      // If this is the closest item we've found so far
+      if (distance < minDistance) {
+        minDistance = distance;
+        newIndex = index;
+      }
+    });
+
+    if (newIndex !== this.dragStartIndex) {
       this.reorderItems(this.dragStartIndex, newIndex);
       this.dragStartIndex = newIndex;
-      this.dragStartY = this.currentY;
     }
   }
 
